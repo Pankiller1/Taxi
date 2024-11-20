@@ -1,0 +1,63 @@
+.DS_Store
+
+/data/
+
+# Added python ignore
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment directories
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Environment variables file
+*.env
+
+# macOS hidden files
+.DS_Store
+
+# Logs
+*.log
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+*.cover
+coverage.xml
+*.py,cover
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# PEP 582; used by Pyflow
+__pypackages__/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# PyInstaller output
+dist/
+build/
+*.spec
+
+# MyPy cache
+.mypy_cache/
+
+# Pyre type checker
+.pyre/
+
+# Other
+*.egg-info/
+*.egg
+*.pkl
+

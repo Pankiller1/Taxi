@@ -1,10 +1,10 @@
 import pandas as pd
 import os
 
+data_folder = "../data/taxi"
+output_csv_name = "../data/results.csv"
 
-data_folder = "shenzhen/taxi"
-
-date_range = [date.strftime("%Y-%m-%d").lstrip("0").replace("-0", "-") for date in pd.date_range("2018-10-01", "2018-10-30", freq="D")]
+date_range = [date.strftime("%Y-%m-%d").lstrip("0").replace("-0", "-") for date in pd.date_range("2018-10-01", "2018-10-3", freq="D")]
 
 results = []
 
@@ -58,6 +58,6 @@ for file_date in date_range:
     print(f"Finished processing {file_date}")
 
 results_df = pd.DataFrame(results)
-results_df.to_csv("results.csv", index=False, encoding='utf-8')
+results_df.to_csv(output_csv_name, index=False, encoding='utf-8')
 
 print("finished to csv")
