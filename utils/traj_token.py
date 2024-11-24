@@ -15,12 +15,12 @@ def process_trajectory(trajectory, max_length=2048):
         list: Processed trajectory with tokens and padding.
     """
     center = [114.085947, 22.547]
-    start_token = [-20, -20]
-    end_token = [20, 20]
-    padding_token = [0, 0]
+    start_token = [-20, -20, -1]
+    end_token = [20, 20, -2]
+    padding_token = [0, 0, 0]
     
     # Transform trajectory points relative to the center
-    transformed_traj = [[100 * (point[0] - center[0]), 100 * (point[1] - center[1])] for point in trajectory]
+    transformed_traj = [[point[0], point[1], i+1] for i, point in enumerate(trajectory)]
     
     # Add start and end tokens
     processed_traj = [start_token] + transformed_traj + [end_token]
