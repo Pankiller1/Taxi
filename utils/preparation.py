@@ -4,7 +4,7 @@ import os
 data_folder = "../data/taxi"
 output_csv_name = "../data/results.csv"
 
-date_range = [date.strftime("%Y-%m-%d").lstrip("0").replace("-0", "-") for date in pd.date_range("2018-10-01", "2018-10-3", freq="D")]
+date_range = [date.strftime("%Y-%m-%d").lstrip("0").replace("-0", "-") for date in pd.date_range("2018-10-01", "2018-10-30", freq="D")]
 
 results = []
 
