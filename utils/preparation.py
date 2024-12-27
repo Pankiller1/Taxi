@@ -42,7 +42,7 @@ for file_date in date_range:
                 end_time = group.loc[i, 'time']
                 time_elapsed = (end_time - start_time).total_seconds()
                 
-                if time_elapsed >= 180 and time_elapsed <= 7200:
+                if time_elapsed >= 600 and time_elapsed <= 3000:
                     # 保存结果
                     daily_results.append({
                         "VehicleNum": vehicle,
