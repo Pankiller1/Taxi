@@ -2,7 +2,7 @@
 import pandas as pd
 import csv
 
-def process_trajectory(trajectory, max_length=2048):
+def process_trajectory(trajectory, max_length=2048, input_dim = 2):
     """
     Process the trajectory by transforming coordinates relative to a center point,
     adding beginning and ending tokens, and padding to the desired length.
@@ -14,13 +14,12 @@ def process_trajectory(trajectory, max_length=2048):
     Returns:
         list: Processed trajectory with tokens and padding.
     """
-    center = [114.085947, 22.547]
-    start_token = [-20, -20, -1]
-    end_token = [20, 20, -2]
-    padding_token = [0, 0, 0]
+    start_token = [-20, -20] + [0] * (input_dim - 2) + [-1]
+    end_token = [20, 20] + [0] * (input_dim - 2) + [-2]
+    padding_token = [0] * (input_dim + 1)
     
     # Transform trajectory points relative to the center
-    transformed_traj = [[point[0], point[1], i+1] for i, point in enumerate(trajectory)]
+    transformed_traj = [point + [i+1] for i, point in enumerate(trajectory)]
     
     # Add start and end tokens
     processed_traj = [start_token] + transformed_traj + [end_token]
@@ -36,9 +35,10 @@ def process_trajectory(trajectory, max_length=2048):
 
 
 if __name__ == "__main__":
-    file_path = "../data/results.csv"  # Replace with your actual file path
-    output_path = "../data/token_traj.csv"
-
+    num_features = 4
+    file_path = f"../data/results_chengdu_{num_features}d.csv"  # Replace with your actual file path
+    output_path = f"../data/token_traj_chengdu_{num_features}d.csv"
+    
     # Open input and output files
     with open(file_path, "r") as infile, open(output_path, "w", newline="") as outfile:
         reader = csv.DictReader(infile)
@@ -51,7 +51,7 @@ if __name__ == "__main__":
             trajectory = eval(row["trajectory"])  # Convert string to list safely
             
             # Process the trajectory
-            processed_trajectory = process_trajectory(trajectory)
+            processed_trajectory = process_trajectory(trajectory, input_dim=num_features)
 
             # Write processed data to the output file
             writer.writerow({
